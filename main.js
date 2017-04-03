@@ -115,7 +115,6 @@ Trello.prototype.addCard = function (name, description, listId, callback) {
         };
     };
 
-
     return makeRequest(rest.post, this.uri + '/1/cards', {query: query}, callback);
 };
 
