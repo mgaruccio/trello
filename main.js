@@ -104,19 +104,11 @@ Trello.prototype.updateBoardPref = function (boardId, field, value, callback) {
 
 Trello.prototype.addCard = function (name, description, listId, callback) {
     var query = this.createQuery();
+    query.name = name;
+    query.idList = listId;
 
-    if(typeof(name) === "object") {
-        query = Object.assign(query,name);
-        if(callback === null) {
-            callback = description;
-        }
-    } else {
-        query.name = name;
-        query.idList = listId;
-        if(description !== null) {
-            query.desc = description;
-        };
-    };
+    if (description !== null)
+        query.desc = description;
 
     return makeRequest(rest.post, this.uri + '/1/cards', {query: query}, callback);
 };
